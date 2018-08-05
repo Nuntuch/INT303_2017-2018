@@ -13,5 +13,22 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+ 
+        <form action="FirstTimeJSP.jsp" method="post">
+            
+            x = <input type="number" name="x"/> <br>
+            y = <input type="number" name="y"/> <hr>
+            <input type="submit"/>
+            
+        </form>
+        
+        <%
+        
+        int x = 5;
+        int y = 3;
+        out.println("x + y = "+(x+y));
+
+        %>
+        
     </body>
 </html>
