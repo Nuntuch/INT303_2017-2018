@@ -38,7 +38,6 @@ public class SimpleCalculatorServlet extends HttpServlet {
         double yValue = Double.valueOf(yStr);
 
         double result = Double.NaN;
-        double resultP = Double.NaN;
         if (Operator.equals(" ")) {
              result = xValue + yValue;
         } else if (Operator.equals("-")) {
@@ -51,6 +50,7 @@ public class SimpleCalculatorServlet extends HttpServlet {
 
         double xValueP = Double.parseDouble(xStr);
         double yValueP = Double.parseDouble(yStr);
+        double resultP = Double.NaN;
 
         switch (Operator) {
             case " ": {
@@ -81,13 +81,13 @@ public class SimpleCalculatorServlet extends HttpServlet {
             out.println("<title>Servlet SimpleCalculatorServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SimpleCalculatorServlet at " + request.getContextPath() + "</h1>");
+//            out.println("<h1>Servlet SimpleCalculatorServlet at " + request.getContextPath() + "</h1>");
             out.println("<h1 style='color:darkblue>Simple Calculator V1 </h1><hr>");
             out.println(" &nbsp; &nbsp; &nbsp; &nbsp; x = " + xValue + "<br>");
             out.println(" &nbsp; &nbsp; &nbsp; &nbsp; y = " + yValue + "<hr>");
             out.println(" &nbsp; &nbsp; &nbsp; &nbsp; Result = " + result + "<hr>");
             
-            out.println("<h1 style='color:darkblue>Simple Calculator V2</h1><hr>");
+            out.println("<h2 style='color:darkblue>Simple Calculator V2</h2><hr>");
             out.println(" &nbsp; &nbsp; &nbsp; &nbsp; x = " + xValueP + "<br>");
             out.println(" &nbsp; &nbsp; &nbsp; &nbsp; y = " + yValueP + "<hr>");
             out.println(" &nbsp; &nbsp; &nbsp; &nbsp; Result = " + resultP + "<hr>");
