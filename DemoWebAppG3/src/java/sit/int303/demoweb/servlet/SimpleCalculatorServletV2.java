@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Nuntuch Thongyoo
  */
-public class SimpleCalculatorServlet extends HttpServlet {
+public class SimpleCalculatorServletV2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,40 +29,50 @@ public class SimpleCalculatorServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String xStr = request.getParameter("x");
-        String yStr = request.getParameter("y");
-        String Operator = request.getParameter("oper");
-
-        double xValue = Double.valueOf(xStr);
-        double yValue = Double.valueOf(yStr);
-
-        double result = Double.NaN;
-        if (Operator.equals(" ")) {
-            result = xValue + yValue;
-        } else if (Operator.equals("-")) {
-            result = xValue - yValue;
-        } else if (Operator.equals("*")) {
-            result = xValue * yValue;
-        } else if (Operator.equals("/")) {
-            result = xValue / yValue;
-        }
-
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+
+            String xStr = request.getParameter("x");
+            String yStr = request.getParameter("y");
+            String Operator = request.getParameter("oper");
+
+            double xValueP = Double.parseDouble(xStr);
+            double yValueP = Double.parseDouble(yStr);
+            double resultP = Double.NaN;
+
+            switch (Operator) {
+                case " ": {
+                    resultP = xValueP + yValueP;
+                    break;
+                }
+                case "-": {
+                    resultP = xValueP - yValueP;
+                    break;
+                }
+                case "*": {
+                    resultP = xValueP * yValueP;
+                    break;
+                }
+                case "/": {
+                    resultP = xValueP / yValueP;
+                    break;
+                }
+
+            }
+
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SimpleCalculatorServlet</title>");
+            out.println("<title>Servlet SimpleCalculatorServletV2</title>");
             out.println("</head>");
             out.println("<body>");
-//            out.println("<h1>Servlet SimpleCalculatorServlet at " + request.getContextPath() + "</h1>");
-            out.println("<h1 style='color:darkblue>Simple Calculator V1 </h1><hr>");
-            out.println(" &nbsp; &nbsp; &nbsp; &nbsp; x = " + xValue + "<br>");
-            out.println(" &nbsp; &nbsp; &nbsp; &nbsp; y = " + yValue + "<hr>");
-            out.println(" &nbsp; &nbsp; &nbsp; &nbsp; Result = " + result + "<hr>");
-
+            out.println("<h1>Servlet SimpleCalculatorServletV2 at " + request.getContextPath() + "</h1>");
+            out.println("<h2 style='color:darkblue>Simple Calculator V2</h2><hr>");
+            out.println(" &nbsp; &nbsp; &nbsp; &nbsp; x = " + xValueP + "<br>");
+            out.println(" &nbsp; &nbsp; &nbsp; &nbsp; y = " + yValueP + "<hr>");
+            out.println(" &nbsp; &nbsp; &nbsp; &nbsp; Result = " + resultP + "<hr>");
             out.println("</body>");
             out.println("</html>");
         }
