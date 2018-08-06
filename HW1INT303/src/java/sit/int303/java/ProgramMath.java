@@ -9,7 +9,7 @@ package sit.int303.java;
  *
  * @author Nuntuch Thongyoo
  */
-public class FindPrimeNumber {
+public class ProgramMath {
 
     public boolean LoopCheckPrimeNumber(int num) {
         for (int i = 2; i < (num / 2); i++) {
