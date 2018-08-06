@@ -11,14 +11,19 @@ import java.util.ArrayList;
  *
  * @author Nuntuch Thongyoo
  */
-public class ProgramMath implements ProgramMathI{
+public class ProgramMath implements ProgramMathI {
 
     @Override
     public boolean LoopCheckPrimeNumber(int num) {
+
+        if (num == 0) {
+            return false;
+        }
+
         for (int i = 2; i < (num / 2); i++) {
             if (i != num) {
                 if (num % i == 0) {
-                return false;
+                    return false;
                 }
 
             }
