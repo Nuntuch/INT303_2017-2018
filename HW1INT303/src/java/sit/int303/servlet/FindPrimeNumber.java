@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sit.int303.java.ProgramMath;
+
 /**
  *
  * @author Nuntuch Thongyoo
@@ -32,15 +34,22 @@ public class FindPrimeNumber extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet FindPrimeNumber</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet FindPrimeNumber at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+   
+            String numS = request.getParameter("num");
+            int num = Integer.parseInt(numS);
+            
+            ProgramMath pm = new ProgramMath();
+            request.setAttribute("programmath", pm);
+            getServletContext().getRequestDispatcher("/findprimenumberoutput.jsp").forward(request, response);
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet FindPrimeNumber</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet FindPrimeNumber at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
         }
     }
 

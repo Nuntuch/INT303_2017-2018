@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Nuntuch Thongyoo
  */
 public interface ProgramMathI {
-    public boolean LoopCheckPrimeNumber(int num);
+    public boolean getLoopCheckPrimeNumber(int num);
     
     public ArrayList<Integer> FindFactor(int num);
     
