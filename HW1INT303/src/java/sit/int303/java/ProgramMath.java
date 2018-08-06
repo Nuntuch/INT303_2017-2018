@@ -5,12 +5,15 @@
  */
 package sit.int303.java;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Nuntuch Thongyoo
  */
-public class ProgramMath {
+public class ProgramMath implements ProgramMathI{
 
+    @Override
     public boolean LoopCheckPrimeNumber(int num) {
         for (int i = 2; i < (num / 2); i++) {
             if (i != num) {
@@ -22,6 +25,16 @@ public class ProgramMath {
         }
 
         return true;
+    }
+
+    @Override
+    public ArrayList<Integer> FindFactor(int num) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean OodOrEven(int num) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
