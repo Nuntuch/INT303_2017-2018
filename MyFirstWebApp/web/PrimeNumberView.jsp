@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Prime Number Application ::</h1>
+        <h1>Prime Number Application ${pn}::</h1>
        <!--Error 404 มักมาจากการเขียน action ในformผิด หรือลิ่งของฌซอฟเรตผิด-->
         <form action="PrimeNumber" method="post">
             Please enter number: 

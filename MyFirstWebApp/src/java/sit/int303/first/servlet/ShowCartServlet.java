@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import sit.int303.first.model.PrimeNumber;
+import sit.int303.first.model.ShoppingCart;
 
 /**
  *
  * @author INT303
  */
-public class PrimeNumberServlet extends HttpServlet {
+public class ShowCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,26 +31,54 @@ public class PrimeNumberServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-//        request.getSession(); จะมีค่าเริ่มต้นเป็น true
-//        request.getSession(Boolean); ถ้าเป็นt แล้วไม่เคยมีเชตชั่นจะสรัางให้ แต่ถ้า f แล้วไม่มีเชตชั่นจะreturn null
-        HttpSession session = request.getSession(true);
-        
-        String n = request.getParameter("number");
-        
-        if (n != null) {//เช็คว่า 
-            int number = Integer.valueOf(n);
-            PrimeNumber pn = (PrimeNumber)session.getAttribute("pn");
-            
-            if(pn == null){   
-                pn = new PrimeNumber(number);
-                session.setAttribute("pn", pn);
-            }
-            pn.setNumber(number);
-        }
-        getServletContext().getRequestDispatcher("/PrimeNumberView.jsp").forward(request, response);
-//    getServletContext() 
 
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+
+            try {
+
+                HttpSession session = request.getSession(false);
+                ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+
+                
+                
+                if (cart == null) {
+                      out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet ShowCart</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Servlet ShowCart at " + request.getContextPath() + "</h1>");
+                out.println("<h1>Error !!! นายยังไม่ได้ซื้อโว้ยยยยยย </h1>");
+                out.println("</body>");
+                out.println("</html>");
+
+                }else{
+            
+                    response.sendRedirect("ViewGoods.jsp");
+//                        request.setAttribute("products", cart);
+//                       getServletContext().getRequestDispatcher("/ViewGoods.jsp").forward(request, response);
+
+                
+                }
+
+            } catch (Exception e) {
+
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet ShowCart</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Servlet ShowCart at " + request.getContextPath() + "</h1>");
+                out.println("<h1>Error !!! " + e + "</h1>");
+                out.println("</body>");
+                out.println("</html>");
+
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

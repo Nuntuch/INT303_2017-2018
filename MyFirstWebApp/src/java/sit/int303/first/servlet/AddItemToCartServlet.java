@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import sit.int303.first.model.PrimeNumber;
+import sit.int303.first.model.ShoppingCart;
+import sit.int303.mockup.model.Product;
+import sit.int303.mockup.model.ProductMockup;
 
 /**
  *
  * @author INT303
  */
-public class PrimeNumberServlet extends HttpServlet {
+public class AddItemToCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,26 +33,28 @@ public class PrimeNumberServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-//        request.getSession(); จะมีค่าเริ่มต้นเป็น true
-//        request.getSession(Boolean); ถ้าเป็นt แล้วไม่เคยมีเชตชั่นจะสรัางให้ แต่ถ้า f แล้วไม่มีเชตชั่นจะreturn null
+//        response.setContentType("text/html;charset=UTF-8");
+      
+       
         HttpSession session = request.getSession(true);
+        ShoppingCart cart = (ShoppingCart)session.getAttribute("cart");
         
-        String n = request.getParameter("number");
+        if(cart == null){
+        cart = new ShoppingCart();
+        session.setAttribute("cart", cart);
         
-        if (n != null) {//เช็คว่า 
-            int number = Integer.valueOf(n);
-            PrimeNumber pn = (PrimeNumber)session.getAttribute("pn");
-            
-            if(pn == null){   
-                pn = new PrimeNumber(number);
-                session.setAttribute("pn", pn);
-            }
-            pn.setNumber(number);
         }
-        getServletContext().getRequestDispatcher("/PrimeNumberView.jsp").forward(request, response);
-//    getServletContext() 
-
+        String productCode = request.getParameter("productCode");
+        Product p = ProductMockup.getProduct(productCode);
+        cart.add(p);
+        System.out.println("ADD "+ p.getProductName());
+//        getServletContext().getRequestDispatcher("/ProductList").forward(request, response);
+                
+        response.sendRedirect("ProductList"); //บังคับให้ผู้ใช้ส่งส่งลิ้งค์มาใหม่เพื่อไม่ให้ส่งurlเดิมมาอีก
+        
+            
+      
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
