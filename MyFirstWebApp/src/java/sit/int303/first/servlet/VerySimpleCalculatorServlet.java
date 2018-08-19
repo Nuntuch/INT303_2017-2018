@@ -44,7 +44,7 @@ public class VerySimpleCalculatorServlet extends HttpServlet {
                 System.out.println("y"+Stry);
                 System.out.println("Oper"+Operator);
                 
-//                double x = Double.parseDouble(Strx);
+//                 double x = Double.parseDouble(Strx);
 //                double y = Double.parseDouble(Stry);
                 if (" ".equals(Operator)) {
                     Operator = "+";

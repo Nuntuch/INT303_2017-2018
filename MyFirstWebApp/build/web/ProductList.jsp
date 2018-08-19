@@ -20,15 +20,18 @@
     <body>
         <div class="container">
             <table class=" table">
-
+                
+                <jsp:include page="include/Header.jsp?title=Product Listing ::"/>    
+                
                 <tr>
-                    <td><h1>Product List ::</h1></td>
+                    <!--<td><h1>Product List ::</h1></td>-->
                     <td><a href="ShowCart"> Your Cart:(${cart.totalQuantity})</a></td>
                 </tr>
 
 
             </table>
-
+                <hr>
+                
             <!--<h1>Product List :: </h1>-->
 
 

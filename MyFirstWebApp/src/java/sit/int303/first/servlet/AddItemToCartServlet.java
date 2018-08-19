@@ -35,7 +35,7 @@ public class AddItemToCartServlet extends HttpServlet {
             throws ServletException, IOException {
 //        response.setContentType("text/html;charset=UTF-8");
       
-       
+//       session คือ ตัวแปรที่อยู่ในclassต่างๆ
         HttpSession session = request.getSession(true);
         ShoppingCart cart = (ShoppingCart)session.getAttribute("cart");
         
@@ -52,8 +52,8 @@ public class AddItemToCartServlet extends HttpServlet {
                 
         response.sendRedirect("ProductList"); //บังคับให้ผู้ใช้ส่งส่งลิ้งค์มาใหม่เพื่อไม่ให้ส่งurlเดิมมาอีก
         
-            
-      
+        
+        
         
     }
 

@@ -36,6 +36,7 @@ public class ProductListServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String fileLocation = getServletContext().getRealPath("/");
+        //เก็บไฟล์location เป็นString  ... 
         String absoluteFileName = fileLocation + "WEB-INF\\products.txt";
 //        System.out.println(absoluteFileName);
 

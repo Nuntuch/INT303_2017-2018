@@ -31,57 +31,84 @@ public class ShowCartServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /**
+         * try {
+*
+         */
+        //เวลามีปัญหาที่แก้ไม่ได้ ลบโฟเดอร์build
+        HttpSession session = request.getSession(false);
 
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-
-            try {
-
-                HttpSession session = request.getSession(false);
-                ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-
-                
-                
-                if (cart == null) {
-                      out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet ShowCart</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Servlet ShowCart at " + request.getContextPath() + "</h1>");
-                out.println("<h1>Error !!! นายยังไม่ได้ซื้อโว้ยยยยยย </h1>");
-                out.println("</body>");
-                out.println("</html>");
-
-                }else{
-            
-                    response.sendRedirect("ViewGoods.jsp");
-//                        request.setAttribute("products", cart);
-//                       getServletContext().getRequestDispatcher("/ViewGoods.jsp").forward(request, response);
-
-                
-                }
-
-            } catch (Exception e) {
-
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet ShowCart</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Servlet ShowCart at " + request.getContextPath() + "</h1>");
-                out.println("<h1>Error !!! " + e + "</h1>");
-                out.println("</body>");
-                out.println("</html>");
-
+//        Action  คือ xml เช่น fore ในหน้า jsp  (EL,JSTL)
+        if (session != null) {
+            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+            System.out.println("Session isnot Null 55555555555555555555555555555555+");
+            if (cart != null) {
+                System.out.println("Cart isnot Null 55555555555555555555555555555555+");
+                getServletContext().getRequestDispatcher("/ShowCart.jsp").forward(request, response);
+                return;
             }
+// getServletContext() เป็นการดึงข้อมูลมาจาก appication scopt
         }
+//        getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Session TimeOut .. Try again N5 Omsin Bun Error !!!  EiEi"); //เป็นการแก้error แบบง่าย ถ้าอยากให้มันไปดึงหน้า html อื่นมาให้ไปแก้ที่web.xml
+
+        /**
+         * } catch (Exception e) {
+         *
+         *
+         * // getServletContext().g }
+*
+         */
+//        response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//
+//            try {
+//
+//                HttpSession session = request.getSession(false);
+//                ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");//key word ในการเรียกในjsp
+//
+//                
+//                
+//                if (cart == null) {
+//                      out.println("<!DOCTYPE html>");
+//                out.println("<html>");
+//                out.println("<head>");
+//                out.println("<title>Servlet ShowCart</title>");
+//                out.println("</head>");
+//                out.println("<body>");
+//                out.println("<h1>Servlet ShowCart at " + request.getContextPath() + "</h1>");
+//                out.println("<h1>Error !!! นายยังไม่ได้ซื้อโว้ยยยยยย </h1>");
+//                out.println("</body>");
+//                out.println("</html>");
+//
+//                }else{
+//            
+//                    response.sendRedirect("ViewGoods.jsp");
+////                        request.setAttribute("products", cart);
+////                       getServletContext().getRequestDispatcher("/ViewGoods.jsp").forward(request, response);
+//
+//                
+//                }
+//
+//            } catch (Exception e) {
+//
+//                out.println("<!DOCTYPE html>");
+//                out.println("<html>");
+//                out.println("<head>");
+//                out.println("<title>Servlet ShowCart</title>");
+//                out.println("</head>");
+//                out.println("<body>");
+//                out.println("<h1>Servlet ShowCart at " + request.getContextPath() + "</h1>");
+//                out.println("<h1>Error !!! " + e + "</h1>");
+//                out.println("</body>");
+//                out.println("</html>");
+//
+//            }
+//    }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
